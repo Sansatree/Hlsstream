@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko" >
+<head>
+    <meta charset=utf-8 />
+    <title>hls.js</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+<video controls="controls" id="video" autoplay="autoplay"></video>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+
+<script>
+  if (Hls.isSupported()) {
+    var video = document.getElementById('video');
+    var hls = new Hls();
+    // bind them together
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+      console.log('video and hls.js are now bound together !');
+      hls.loadSource('http://localhost:8080/testvideo.m3u8');
+      hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+        console.log(
+          'manifest loaded, found ' + data.levels.length + ' quality level'
+        );
+      });
+    });
+  }
+</script>
+
+
+<!--    var hls = new Hls();-->
+<!--    // bind them together-->
+<!--    hls.attachMedia(video);-->
+<!--    hls.on(Hls.Events.MEDIA_ATTACHED, function () {-->
+<!--      console.log('video and hls.js are now bound together !');-->
+<!--      hls.loadSource('http://localhost:8080/testvideo.m3u8');-->
+<!--      hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {-->
+<!--        console.log(-->
+<!--          'manifest loaded, found ' + data.levels.length + ' quality level'-->
+<!--        );-->
+<!--      });-->
+<!--    });-->
+
+
+<!--	<script>-->
+<!--	var video = document.getElementById('video-player');-->
+<!--	var videoSrc = 'http://localhost:8080/_definst_/mp4:C:\ffmpeg\bin\testvideo.m3u8';-->
+<!--	//var videoSrc = 'http://{Domain or IP}:{Port}/{Application}/_definst_/mp4:{Path}/{File Name}/playlist.m3u8';-->
+<!--	//-->
+<!--	// First check for native browser HLS support-->
+<!--	//-->
+<!--	if (video.canPlayType('application/vnd.apple.mpegurl')) {-->
+<!--		video.src = videoSrc;-->
+<!--		//-->
+<!--		// If no native HLS support, check if hls.js is supported-->
+<!--		//-->
+<!--	} else if (Hls.isSupported()) {-->
+<!--		var hls = new Hls();-->
+<!--		hls.loadSource(videoSrc);-->
+<!--		hls.attachMedia(video);-->
+<!--	}-->
+
+</body>
+</html>

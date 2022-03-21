@@ -7,50 +7,33 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
-@RestController
+
+//@RestController
+@Controller
 @RequiredArgsConstructor
 @Slf4j
 public class HlsController {
+
+    private static FilePath filePath;
+
+
     private static final String inputPath = "C:\\ffmpeg\\bin";
     private static final String videoName = "testvideo";
     private static final String tsName = "testvideo";
+    private static final String pathFile = "../m3u8/";
 
 
-    @GetMapping("/hls")
-    public String hls(){
-        String filePath = inputPath + videoName + ".m3u8";
-//        Model videoUrl = model.addAttribute("videoUrl", inputPath + videoName + ".m3u8");
-        return "hls";
+
+    @GetMapping("/hls-video")
+    public String videoHls(){
+
+        return "hlsvideo";
     }
 
-    @GetMapping("/{videoName}.m3u8")
-    public String videoM3u8(@PathVariable String videoName){
-
-        String fileFullPath = inputPath + "\\" + videoName + ".m3u8";
-        Resource resource = new FileSystemResource(fileFullPath);
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; videoname=" + videoName + ".m3u8");
-//        headers.setContentType(MediaType.parseMediaType("application/vnd.apple.mpegurl"));
-        return fileFullPath;
-
-    }
-
-    @GetMapping("/{tsName}.ts")
-    public ResponseEntity<Resource> videoTs(@PathVariable String videoName, @PathVariable String tsName){
-        String fileFullPath = inputPath + "\\" + tsName + ".ts";
-        Resource resource = new FileSystemResource(fileFullPath);
-        HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; videoname=" + tsName + ".ts");
-        headers.setContentType(MediaType.parseMediaType(MediaType.APPLICATION_OCTET_STREAM_VALUE));
-        return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
-
-    }
 
 
 }

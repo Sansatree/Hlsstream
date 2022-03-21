@@ -1,4 +1,4 @@
-package com.sansatree.livestreaming;
+package com.sansatree.livestreaming.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

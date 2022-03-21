@@ -23,8 +23,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	//ffmpeg 의존성
 	implementation group: 'net.bramp.ffmpeg', name: 'ffmpeg', version: '0.6.2'
+	//Jsch
+	implementation group: 'com.jcraft', name: 'jsch', version: '0.1.55'
 
 
 	compileOnly 'org.projectlombok:lombok'

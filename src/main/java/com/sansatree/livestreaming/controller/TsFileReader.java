@@ -1,4 +1,4 @@
-package com.sansatree.livestreaming;
+package com.sansatree.livestreaming.controller;
 
 import java.nio.file.Path;
 
